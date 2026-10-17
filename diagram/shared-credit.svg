@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="914" height="560" viewBox="0 0 914 560">
+<rect width="100%" height="100%" fill="#f6f4ef"/>
+<text x="28" y="40" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#243040">Shared class credit</text>
+<text x="28" y="66" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#5c6570">req0 and req1 share class 0. req2 has class 1. The trace grants req2, then req0, and never req1.</text>
+<rect x="28" y="96" width="88" height="40" rx="8" fill="#d9e6f2" stroke="#d9d3c8"/>
+<text x="72" y="120" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#243040">req0</text>
+<rect x="128" y="96" width="88" height="40" rx="8" fill="#d9e6f2" stroke="#d9d3c8"/>
+<text x="172" y="120" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#243040">req1</text>
+<rect x="28" y="146" width="188" height="28" rx="8" fill="#fff8ee" stroke="#d9d3c8"/>
+<text x="122" y="170" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#243040">class 0 credit</text>
+<rect x="248" y="116" width="88" height="40" rx="8" fill="#d9e6f2" stroke="#d9d3c8"/>
+<text x="292" y="140" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#243040">req2</text>
+<rect x="248" y="166" width="88" height="28" rx="8" fill="#fff8ee" stroke="#d9d3c8"/>
+<text x="292" y="190" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#243040">class 1 credit</text>
+<rect x="390" y="126" width="110" height="40" rx="8" fill="#f3f1ec" stroke="#d9d3c8"/>
+<text x="445" y="150" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#243040">rr_arb</text>
+<rect x="548" y="126" width="150" height="40" rx="8" fill="#f6e2d2" stroke="#d9d3c8"/>
+<text x="623" y="150" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#243040">one grant</text>
+<text x="28" y="210" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#5c6570">req3 is low in this demo. A credit returns to a class on every cycle that class is empty.</text>
+<text x="28" y="269" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#243040">req0</text>
+<rect x="106" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="132" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="158" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="184" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="210" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="236" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="262" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="288" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="314" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="340" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="366" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="392" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="418" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="444" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="470" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="496" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="522" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="548" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="574" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="600" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="626" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="652" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="678" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="704" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="730" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="756" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="782" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="808" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<rect x="834" y="250" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="860" y="250" width="22" height="28" rx="4" fill="#e39a62" stroke="#e4dfd6"/>
+<text x="28" y="307" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#243040">req1</text>
+<rect x="106" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="132" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="158" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="184" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="210" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="236" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="262" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="288" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="314" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="340" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="366" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="392" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="418" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="444" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="470" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="496" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="522" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="548" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="574" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="600" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="626" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="652" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="678" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="704" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="730" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="756" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="782" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="808" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="834" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="860" y="288" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<text x="28" y="345" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#243040">req2</text>
+<rect x="106" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="132" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="158" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="184" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="210" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="236" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="262" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="288" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="314" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="340" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="366" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="392" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="418" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="444" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="470" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="496" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="522" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="548" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="574" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="600" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="626" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="652" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="678" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="704" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="730" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="756" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="782" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="808" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<rect x="834" y="326" width="22" height="28" rx="4" fill="#6f97bf" stroke="#e4dfd6"/>
+<rect x="860" y="326" width="22" height="28" rx="4" fill="#fff" stroke="#e4dfd6"/>
+<text x="117" y="242" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#5c6570">1</text>
+<text x="221" y="242" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#5c6570">5</text>
+<text x="351" y="242" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#5c6570">10</text>
+<text x="481" y="242" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#5c6570">15</text>
+<text x="611" y="242" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#5c6570">20</text>
+<text x="741" y="242" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#5c6570">25</text>
+<text x="871" y="242" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#5c6570">30</text>
+<text x="28" y="392" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#243040">30 compiled cycles: req0 = 15, req1 = 0, req2 = 15. Orange is a req0 grant. Blue is a req2 grant.</text>
+<text x="28" y="416" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#5c6570">req1 is eligible on every orange cycle because class 0 has credit. The wrap still selects req0.</text>
+</svg>
+
