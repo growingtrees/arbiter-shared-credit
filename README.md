@@ -1,25 +1,25 @@
-# RTL property review
+# RTL Properties
 
-Give the RTL and the properties to an AI coding tool, and ask it to compare them. The useful result is a counterexample.
+The product is the properties. You use your own AI coding tool, such as Cursor or Codex, and your own RTL. Import the properties and ask your tool to compare them with that RTL. The useful result is a counterexample.
 
-Verilog is the recommended input. An in-house language can hide quirks that the tool will misread. Exporting that source to `.v` files gives the tool the design in a form it can follow. A simulator is not part of the review.
+Verilog is the recommended RTL input. An in-house language can hide quirks that an AI tool will misread. Exporting that source to `.v` files gives the tool the design in a form it can follow. A simulator is not part of the review.
 
-A property states what the design must do. Start from a general property for that kind of block. Keep it, change the wording for your design, or set it aside. The tool maps those words onto the signals in the RTL. One property is checked at a time.
+A property states what the design must do. Start from a general property for that kind of block. Keep it, change the wording for your design, or set it aside.
 
-This repository is the first demonstration of that flow. The design is small on purpose: a round-robin arbiter whose local grants are correct, while one request is never granted. The diagram below was drawn from a trace of this example. Generating that picture is not a step in the review.
+This repository demonstrates the properties with one small design. It does not include an AI tool. The design is a round-robin arbiter whose local grants are correct, while one request is never granted. The diagram below was drawn while preparing the example. Generating that picture is not part of using the properties.
 
 ![Shared class credit trace](diagram/shared-credit.svg)
 
 ## Flow
 
-1. Choose a property for the kind of block, such as: a request that stays asserted is eventually granted while the credit it needs continues to be supplied.
-2. Change that property where the design is allowed to behave differently.
-3. Provide the RTL. Use Verilog `.v` files when the original source is an in-house language.
-4. Ask the AI coding tool to compare the RTL with the property.
-5. The tool names the RTL signals it used for the terms in the property.
-6. If the property fails, the tool returns a counterexample.
+1. Take the properties for that kind of block. One example: a request that stays asserted is eventually granted while the credit it needs continues to be supplied.
+2. Change a property where your design is allowed to behave differently.
+3. Import the properties into your own AI coding tool.
+4. Point that tool at your RTL. Use Verilog `.v` files when the original source is an in-house language.
+5. Ask your tool to compare the properties with the RTL.
+6. If a property fails, your tool returns a counterexample.
 
-No simulator and no separate verification environment are required.
+No AI tool, simulator, or verification environment is included.
 
 ## This example
 
