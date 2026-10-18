@@ -21,6 +21,20 @@ This repository demonstrates the properties with one small design. It does not i
 
 No AI tool, simulator, or verification environment is included.
 
+## Try it in your tool
+
+Open the `rtl` folder in your own AI coding tool. Paste this property and ask the tool to compare it with `rr_arb.v` and `rr_arb_shared_credit.v`:
+
+```text
+Property: a request that stays asserted is eventually granted while its credit continues to be supplied.
+
+req0 and req1 share class 0. req2 has class 1. A class is refilled on every cycle it is empty. req0, req1, and req2 stay asserted.
+
+Compare this property with the RTL. If it fails, give a counterexample.
+```
+
+The failure is specific. Class 0 credit keeps returning, `req1` stays asserted, and the grants are `req2`, then `req0`, and that pair continues. `req1` receives no grant.
+
 ## This example
 
 `req0` and `req1` share one credit pool. `req2` has a credit pool of its own. Both pools are refilled on every cycle they are empty. The arbiter grants `req2`, then `req0`, and that pair repeats. `req1` stays asserted, and it is eligible on every class-0 cycle, but it never receives a grant.
