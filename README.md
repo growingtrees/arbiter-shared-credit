@@ -1,10 +1,10 @@
 # RTL property review
 
-Give existing RTL and a property to an AI coding tool. The useful result is a counterexample that can repeat forever. Compile the RTL and reproduce that trace.
+Give existing RTL and a property to an AI coding tool. The useful result is a counterexample. Compile the RTL and reproduce that trace.
 
-A property is a statement about request, grant, and whether a resource is available. Start from a general property for that kind of block. Keep it, change the wording for your design, or set it aside. The tool maps those words onto the signals in the RTL. One property is checked at a time.
+A property states what the design must do. Start from a general property for that kind of block. Keep it, change the wording for your design, or set it aside. The tool maps those words onto the signals in the RTL. One property is checked at a time.
 
-A run that stays clean for 30 cycles, or 100, does not prove the property. The next cycle can still fail. A counterexample that returns to the same state and repeats does show the failure.
+A run that stays clean for 30 cycles, or 100, does not prove the property. The next cycle can still fail. A counterexample trace shows the failure.
 
 This repository is the first demonstration of that flow. The design is small on purpose: a round-robin arbiter whose local grants are correct, while one request is never granted.
 
@@ -15,9 +15,9 @@ This repository is the first demonstration of that flow. The design is small on 
 1. Choose a property for the kind of block, such as: a request that stays asserted is eventually granted while the credit it needs continues to be supplied.
 2. Change that property where the design is allowed to behave differently.
 3. Give the RTL and that one property to Cursor or another AI coding tool.
-4. The tool names the request, grant, credit, and resource signals it used.
-5. If the property fails, the tool returns a repeating counterexample.
-6. Compile the RTL and check that the trace repeats.
+4. The tool names the RTL signals it used for the terms in the property.
+5. If the property fails, the tool returns a counterexample.
+6. Compile the RTL and check that trace.
 
 No separate verification environment is required for this review. The compiled trace is still the evidence.
 
