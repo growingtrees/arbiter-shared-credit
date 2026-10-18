@@ -1,12 +1,12 @@
 # RTL property review
 
-Give existing RTL and a property to an AI coding tool. The useful result is a counterexample. Compile the RTL and reproduce that trace.
+Give the RTL and the properties to an AI coding tool, and ask it to compare them. The useful result is a counterexample.
+
+Verilog is the recommended input. An in-house language can hide quirks that the tool will misread. Exporting that source to `.v` files gives the tool the design in a form it can follow. A simulator is not part of the review.
 
 A property states what the design must do. Start from a general property for that kind of block. Keep it, change the wording for your design, or set it aside. The tool maps those words onto the signals in the RTL. One property is checked at a time.
 
-A run that stays clean for 30 cycles, or 100, does not prove the property. The next cycle can still fail. A counterexample trace shows the failure.
-
-This repository is the first demonstration of that flow. The design is small on purpose: a round-robin arbiter whose local grants are correct, while one request is never granted.
+This repository is the first demonstration of that flow. The design is small on purpose: a round-robin arbiter whose local grants are correct, while one request is never granted. The diagram below was drawn from a trace of this example. Generating that picture is not a step in the review.
 
 ![Shared class credit trace](diagram/shared-credit.svg)
 
@@ -14,12 +14,12 @@ This repository is the first demonstration of that flow. The design is small on 
 
 1. Choose a property for the kind of block, such as: a request that stays asserted is eventually granted while the credit it needs continues to be supplied.
 2. Change that property where the design is allowed to behave differently.
-3. Give the RTL and that one property to Cursor or another AI coding tool.
-4. The tool names the RTL signals it used for the terms in the property.
-5. If the property fails, the tool returns a counterexample.
-6. Compile the RTL and check that trace.
+3. Provide the RTL. Use Verilog `.v` files when the original source is an in-house language.
+4. Ask the AI coding tool to compare the RTL with the property.
+5. The tool names the RTL signals it used for the terms in the property.
+6. If the property fails, the tool returns a counterexample.
 
-No separate verification environment is required for this review. The compiled trace is still the evidence.
+No simulator and no separate verification environment are required.
 
 ## This example
 
@@ -62,9 +62,9 @@ The compiled result over 30 cycles is `req0 = 15`, `req1 = 0`, `req2 = 15`. The 
 
 Cycle 1 grants `req2` and moves the pointer above it. Cycle 2 has class-0 credit, so `req0` and `req1` are both eligible. The pointer is above them, the scan wraps, and `req0` is granted. Class 0 is empty again. The same two cycles repeat.
 
-## Run
+## How this diagram was produced
 
-Using Icarus Verilog from the repository root:
+The review flow above does not use a simulator. The picture in this repository was drawn from a trace generated while preparing the example. To regenerate that trace with Icarus Verilog, from the repository root:
 
 ```
 iverilog -g2012 -o sim.out rtl/rr_arb.v rtl/rr_arb_shared_credit.v rtl/tb_rr_arb_shared_credit.v
