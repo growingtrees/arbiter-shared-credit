@@ -10,6 +10,8 @@ This repository demonstrates the properties with one small design. It does not i
 
 ![Shared class credit trace](diagram/shared-credit.svg)
 
+A walkthrough of this example is at https://youtu.be/ohs3AbS6zzk.
+
 ## Flow
 
 1. Take the properties for that kind of block. One example: a request that stays asserted is eventually granted while the credit it needs continues to be supplied.
