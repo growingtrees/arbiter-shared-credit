@@ -77,14 +77,3 @@ A grant spends one credit from that class. `credit0`, `credit1`, and `credit2` e
 The compiled result over 30 cycles is `req0 = 15`, `req1 = 0`, `req2 = 15`. The cycle values are in `trace/rr-arbiter-shared-credit-trace.txt`. In the `gnt` column, bit 0 is `req0`, so `0100` grants `req2` and `0001` grants `req0`.
 
 Cycle 1 grants `req2` and moves the pointer above it. Cycle 2 has class-0 credit, so `req0` and `req1` are both eligible. The pointer is above them, the scan wraps, and `req0` is granted. Class 0 is empty again. The same two cycles repeat.
-
-## How this diagram was produced
-
-The review flow above does not use a simulator. The picture in this repository was drawn from a trace generated while preparing the example. To regenerate that trace with Icarus Verilog, from the repository root:
-
-```
-iverilog -g2012 -o sim.out rtl/rr_arb.v rtl/rr_arb_shared_credit.v rtl/tb_rr_arb_shared_credit.v
-vvp sim.out
-```
-
-The testbench writes a new `rr-arbiter-shared-credit-trace.txt` in the current directory and prints `PASS` when the counts are 15, 0, and 15.
