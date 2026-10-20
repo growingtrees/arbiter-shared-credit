@@ -29,4 +29,3 @@ cycle gnt mask class0 class1 class2 credit0 credit1
 28 0001 1000 1 0 0 0 1
 29 0100 1110 0 1 0 1 0
 30 0001 1000 1 0 0 0 1
-counts req0=15 req1=0 req2=15 req3=0

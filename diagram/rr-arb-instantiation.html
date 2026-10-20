@@ -1,0 +1,263 @@
+<div id="arb-inst" class="vis-section-stack">
+  <p class="vis-sr-only">rr_arb_shared_credit instantiates rr_arb once as u_rr_arb. clk, reset_, and req pass through. credit0 fills class 0, which enables req_en[1:0]. credit1 enables req_en[2]. credit2 enables req_en[3]. The matching grant spends one credit.</p>
+  <div class="vis-column">
+    <div class="vis-chart-meta">
+      <div class="vis-chart-meta-copy">
+        <h3>Shared-credit instantiation</h3>
+        <span>Round-robin stays a black box</span>
+      </div>
+      <div class="vis-legend">
+        <span class="vis-legend-item"><span class="vis-swatch vis-fg"></span>Pass-through</span>
+        <span class="vis-legend-item"><span class="vis-swatch vis-blue"></span>Credit</span>
+      </div>
+    </div>
+    <div id="arb-inst-stage"></div>
+  </div>
+</div>
+<style>
+  #arb-inst #arb-inst-stage svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+<script>
+(function () {
+  var NS = "http://www.w3.org/2000/svg";
+  var stage = document.getElementById("arb-inst-stage");
+  var drawn = 0;
+
+  var classes = [
+    { credit: "credit0", name: "class 0", en: "req_en[1:0]", spend: "gnt[1:0] spends" },
+    { credit: "credit1", name: "class 1", en: "req_en[2]", spend: "gnt[2] spends" },
+    { credit: "credit2", name: "class 2", en: "req_en[3]", spend: "gnt[3] spends" }
+  ];
+
+  function el(name, attrs) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (key) {
+      node.setAttribute(key, attrs[key]);
+    });
+    return node;
+  }
+
+  function label(x, y, value, anchor) {
+    var node = el("text", {
+      x: String(x),
+      y: String(y),
+      "text-anchor": anchor || "start",
+      "dominant-baseline": "middle",
+      class: "vis-chart-text"
+    });
+    node.textContent = value;
+    return node;
+  }
+
+  function strokeLine(parent, x1, y1, x2, y2, credit) {
+    parent.appendChild(el("line", {
+      x1: String(x1),
+      y1: String(y1),
+      x2: String(x2),
+      y2: String(y2),
+      stroke: credit ? "var(--blue)" : "var(--foreground)",
+      "stroke-width": "1.5",
+      "vector-effect": "non-scaling-stroke"
+    }));
+  }
+
+  function wire(parent, x1, y1, x2, y2, credit) {
+    var dx = x2 - x1;
+    var dy = y2 - y1;
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var ux = dx / len;
+    var uy = dy / len;
+    var ah = 8;
+    var stroke = credit ? "var(--blue)" : "var(--foreground)";
+    var bx = x2 - ux * ah;
+    var by = y2 - uy * ah;
+    strokeLine(parent, x1, y1, bx, by, credit);
+    parent.appendChild(el("path", {
+      d: "M " + x2 + " " + y2 +
+        " L " + (bx - uy * 3.5) + " " + (by + ux * 3.5) +
+        " L " + (bx + uy * 3.5) + " " + (by - ux * 3.5) + " Z",
+      fill: stroke,
+      stroke: "none"
+    }));
+  }
+
+  function classBox(parent, x, y, width, height, lines) {
+    var group = el("g", { class: "vis-category-surface vis-blue" });
+    group.appendChild(el("rect", {
+      x: String(x),
+      y: String(y),
+      width: String(width),
+      height: String(height),
+      rx: "8",
+      fill: "color-mix(in srgb, var(--blue) 16%, var(--card))",
+      stroke: "var(--blue)",
+      "stroke-width": "1.5",
+      "vector-effect": "non-scaling-stroke"
+    }));
+    var cx = x + width / 2;
+    var cy = y + height / 2;
+    var step = 16;
+    var start = cy - ((lines.length - 1) * step) / 2;
+    lines.forEach(function (value, i) {
+      group.appendChild(label(cx, start + i * step, value, "middle"));
+    });
+    parent.appendChild(group);
+  }
+
+  function blackBox(parent, x, y, width, height) {
+    parent.appendChild(el("rect", {
+      x: String(x),
+      y: String(y),
+      width: String(width),
+      height: String(height),
+      rx: "8",
+      fill: "var(--muted)",
+      stroke: "var(--foreground)",
+      "stroke-width": "1.5",
+      "vector-effect": "non-scaling-stroke"
+    }));
+    var cx = x + width / 2;
+    var cy = y + height / 2;
+    parent.appendChild(label(cx, cy - 18, "rr_arb", "middle"));
+    parent.appendChild(label(cx, cy, "u_rr_arb", "middle"));
+    parent.appendChild(label(cx, cy + 18, ".N(4)", "middle"));
+  }
+
+  function frame(parent, width, height) {
+    parent.appendChild(el("rect", {
+      x: "1",
+      y: "1",
+      width: String(width - 2),
+      height: String(height - 2),
+      rx: "10",
+      fill: "var(--card)",
+      stroke: "var(--foreground)",
+      "stroke-width": "1.5",
+      "vector-effect": "non-scaling-stroke"
+    }));
+  }
+
+  function buildWide(w) {
+    var u = Math.min(w, 760);
+    var ox = Math.round((w - u) / 2);
+    var pad = 16;
+    var outW = 108;
+    var boxW = 172;
+    var boxX = u - pad - outW - boxW;
+    var classX = 116;
+    var classW = boxX - classX - 112;
+    if (classW > 160) classW = 160;
+    var classR = classX + classW;
+    var classH = 56;
+    var classGap = 20;
+    var boxY = 76;
+    var boxH = classH * 3 + classGap * 2;
+    var H = boxY + boxH + 18;
+    var centers = [0, 1, 2].map(function (i) {
+      return boxY + classH / 2 + i * (classH + classGap);
+    });
+    var svg = el("svg", {
+      viewBox: "0 0 " + w + " " + H,
+      role: "img",
+      "aria-label": "rr_arb instantiated as u_rr_arb inside rr_arb_shared_credit. credit0, credit1, and credit2 drive req_en."
+    });
+    var root = el("g", { transform: "translate(" + ox + ",0)" });
+    svg.appendChild(root);
+    frame(root, u, H);
+    root.appendChild(label(pad, 26, "rr_arb_shared_credit", "start"));
+    root.appendChild(label(classX, 52, "on when credit > 0", "start"));
+
+    var drops = [boxX + 40, boxX + boxW / 2, boxX + boxW - 40];
+    ["clk", "reset_", "req[3:0]"].forEach(function (name, i) {
+      root.appendChild(label(drops[i], 26, name, "middle"));
+      wire(root, drops[i], 42, drops[i], boxY, false);
+    });
+
+    blackBox(root, boxX, boxY, boxW, boxH);
+
+    classes.forEach(function (item, i) {
+      var y = centers[i];
+      root.appendChild(label(pad, y, item.credit, "start"));
+      wire(root, 84, y, classX, y, true);
+      classBox(root, classX, y - classH / 2, classW, classH, [item.name, item.spend]);
+      wire(root, classR, y, boxX, y, true);
+      root.appendChild(label((classR + boxX) / 2, y - 14, item.en, "middle"));
+    });
+
+    [
+      { y: boxY + boxH * 0.34, name: "gnt[3:0]" },
+      { y: boxY + boxH * 0.66, name: "gnt_valid" }
+    ].forEach(function (item) {
+      wire(root, boxX + boxW, item.y, u - pad - 86, item.y, false);
+      root.appendChild(label(u - pad, item.y, item.name, "end"));
+    });
+    return svg;
+  }
+
+  function buildNarrow(w) {
+    var pad = 12;
+    var rowH = 84;
+    var rowGap = 16;
+    var top = 76;
+    var stack = 3 * rowH + 2 * rowGap;
+    var boxY = top + stack + 44;
+    var boxH = 112;
+    var labelY = boxY + boxH + 28;
+    var H = labelY + 20;
+    var entryX = w - 36;
+    var classX = 92;
+    var classW = entryX - 16 - classX;
+    var svg = el("svg", {
+      viewBox: "0 0 " + w + " " + H,
+      role: "img",
+      "aria-label": "rr_arb instantiated as u_rr_arb inside rr_arb_shared_credit. credit0, credit1, and credit2 drive req_en."
+    });
+    frame(svg, w, H);
+    svg.appendChild(label(pad, 22, "rr_arb_shared_credit", "start"));
+    ["clk", "reset_", "req[3:0]"].forEach(function (name, i) {
+      svg.appendChild(label(pad + i * 74, 48, name, "start"));
+    });
+    strokeLine(svg, 236, 48, entryX, 48, false);
+    wire(svg, entryX, 48, entryX, boxY, false);
+
+    classes.forEach(function (item, i) {
+      var y = top + i * (rowH + rowGap);
+      svg.appendChild(label(pad, y + rowH / 2, item.credit, "start"));
+      wire(svg, 74, y + rowH / 2, classX, y + rowH / 2, true);
+      classBox(svg, classX, y, classW, rowH, [item.name, item.en, item.spend]);
+    });
+
+    svg.appendChild(label(pad, boxY - 22, "on when credit > 0", "start"));
+    blackBox(svg, pad, boxY, entryX - 16 - pad, boxH);
+    [0.32, 0.72].forEach(function (frac, i) {
+      var x = pad + (entryX - 16 - pad) * frac;
+      var name = i === 0 ? "gnt[3:0]" : "gnt_valid";
+      wire(svg, x, boxY + boxH, x, labelY - 14, false);
+      svg.appendChild(label(x, labelY, name, "middle"));
+    });
+    return svg;
+  }
+
+  function draw() {
+    var w = Math.round(stage.clientWidth);
+    if (!w || w === drawn) return;
+    drawn = w;
+    var u = Math.min(w, 760);
+    var boxX = u - 16 - 108 - 172;
+    var classW = Math.min(160, boxX - 116 - 112);
+    var gap = boxX - 116 - classW;
+    var svg = (w >= 700 && classW >= 148 && gap >= 100) ? buildWide(w) : buildNarrow(w);
+    stage.replaceChildren(svg);
+  }
+
+  draw();
+  if (typeof ResizeObserver === "function") {
+    new ResizeObserver(draw).observe(stage);
+  }
+  window.addEventListener("resize", draw);
+})();
+</script>

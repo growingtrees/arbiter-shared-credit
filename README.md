@@ -14,7 +14,7 @@ A walkthrough of this example is at https://youtu.be/ohs3AbS6zzk.
 
 ## Flow
 
-1. Take the properties for that kind of block. One example: a request that stays asserted is eventually granted while the credit it needs continues to be supplied.
+1. Take the demo properties for that kind of block. One of them: a request that stays asserted is eventually granted while the credit it needs continues to be supplied.
 2. Change a property where your design is allowed to behave differently.
 3. Import the properties into your own AI coding tool.
 4. Point that tool at your RTL. Use Verilog `.v` files when the original source is an in-house language.
@@ -25,7 +25,7 @@ No AI tool, simulator, or verification environment is included.
 
 ## Try it in your tool
 
-Open the `rtl` folder in your own AI coding tool. Paste this property and ask the tool to compare it with `rr_arb.v` and `rr_arb_shared_credit.v`:
+Open the `rtl` folder in your own AI coding tool. The demo set is three properties. Paste this one, the property that fails, and ask the tool to compare it with `rr_arb.v` and `rr_arb_shared_credit.v`:
 
 ```text
 Property: a request that stays asserted is eventually granted while its credit continues to be supplied.
@@ -41,17 +41,15 @@ The failure is specific. Class 0 credit keeps returning, `req1` stays asserted, 
 
 `req0` and `req1` share one credit pool. `req2` has a credit pool of its own. Both pools are refilled on every cycle they are empty. The arbiter grants `req2`, then `req0`, and that pair repeats. `req1` stays asserted, and it is eligible on every class-0 cycle, but it never receives a grant.
 
-The properties that hold:
+## Demo properties
 
-- No grant without an eligible request.
-- No grant when that requester's credit is empty.
-- At most one grant.
-- Round-robin among the requesters that are eligible on that cycle.
-- A requester with no credit does not prevent a grant to an eligible requester.
+This repository includes three demo properties. The rest of the arbiter catalog is sold separately.
 
-The property that fails:
-
-- A request that stays asserted is eventually granted while its credit continues to be supplied.
+| Property | On this design |
+|---|---|
+| At most one grant | Holds |
+| Round-robin among the requesters that are eligible on that cycle | Holds |
+| A request that stays asserted is eventually granted while its credit continues to be supplied | Fails |
 
 `req1` stays asserted and class-0 credit keeps returning. The two-cycle loop never grants `req1`.
 
